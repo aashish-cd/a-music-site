@@ -45,8 +45,9 @@ const Music = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button className={style.searchBtn} onClick={handleSubmit}>
-            search
+            Play
           </button>
+          <p>now Playing: {musicToPlay[0]?.snippet.title.slice(0, 70)}</p>
         </div>
       </div>
       <div>
@@ -69,6 +70,7 @@ const Music = () => {
                 width: '640',
                 playerVars: {
                   autoplay: 1,
+                  loop: 1,
                 },
               }}
             />
