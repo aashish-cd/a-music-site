@@ -3,46 +3,40 @@ import React, { useEffect, useState } from 'react';
 import style from './music.module.css';
 import YouTube from 'react-youtube';
 const url = 'https://www.googleapis.com/youtube/v3/search';
-const key = 'AIzaSyDIkZnXgxHLDmBMcKsjXUI9x6j4bqlaJu8';
+const key = 'AIzaSyB4sGKNYZtaIIpPKYXbDn7IjKlyOGfl55Y';
 
 const Music = () => {
-  const [searchTerm, setSearchTerm] = useState('choo');
+  const [searchTerm, setSearchTerm] = useState('choo lo');
   const [musicToPlay, setMusicToPlay] = useState([]);
   const fetchMusic = async () => {
     const res = await axios.get(
       `${url}?part=snippet&maxResults=1&q=${searchTerm}&key=${key}`
     );
     setMusicToPlay(res.data.items);
+    console.log(res);
+    console.log(musicToPlay);
   };
 
-  // function playVideo() {
-  //   var vidurl = $('#play-video').data('url');
-  //   $('#player').html(
-  //     '<iframe type="text/html" width="640" height="390" src="' +
-  //       `https://www.youtube.com/embed/${musicToPlay[0]?.id.videoId}` +
-  //       '" frameborder="0"></iframe>'
-  //   );
-  // }
-  // function playVideo(element) {
-  //   var vidurl = $(element).data('url');
-  //   console.log(vidurl);
-  //   $('#player').html(
-  //     '<iframe type="text/html" width="640" height="390" src="' +
-  //       `https://www.youtube.com/embed/${musicToPlay[0]?.id.videoId}` +
-  //       '" frameborder="0"></iframe>'
-  //   );
-  // }
-
-  const handleSubmit = () => {
-    fetchMusic();
-  };
+  useEffect(async () => {
+    if (musicToPlay.length == 0) {
+      // fetchMusic();
+      console.log('initial');
+    } else {
+      setTimeout(() => {
+        // fetchMusic();
+        console.log('searched');
+      }, 1000);
+    }
+  }, [searchTerm]);
 
   return (
     <>
-      <div>
+      <div className={style.container}>
+        {/* <h1>not AweSOME music app</h1> */}
+
         <form>
           <label className={style.searchLabel} htmlFor='search'>
-            search aweSOME song
+            type aweSOME song
           </label>
           <input
             className={style.searchInput}
@@ -50,12 +44,14 @@ const Music = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button onSubmit={handleSubmit}>Play</button>
+          <button className={style.searchBtn}>
+            wait! we will auto play for you
+          </button>
         </form>
       </div>
-      <div className={style.container}>
+      <div>
         {musicToPlay.map((ss) => (
-          <div>
+          <div style={{ display: 'none' }}>
             {/* <iframe
               width='424'
               height='267'

@@ -9,7 +9,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>music SITE</title>
+          <title>not AweSOME music app</title>
         </Head>
         <body>
           <Main />

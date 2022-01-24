@@ -3,7 +3,8 @@ import Music from '../components/music';
 export default function Home() {
   return (
     <>
-      <h1>not AweSOME music app</h1>
+      <img src='/giphy.gif' alt='background' className='background-image' />
+      <img src='/ss.gif' alt='background' className='background-image-mob' />
       <Music />
     </>
   );
