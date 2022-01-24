@@ -3,40 +3,40 @@ import React, { useEffect, useState } from 'react';
 import style from './music.module.css';
 import YouTube from 'react-youtube';
 const url = 'https://www.googleapis.com/youtube/v3/search';
-const key = 'AIzaSyB4sGKNYZtaIIpPKYXbDn7IjKlyOGfl55Y';
-
+// const key = 'AIzaSyB4sGKNYZtaIIpPKYXbDn7IjKlyOGfl55Y';
+const key = 'AIzaSyCfuWiUInW0YdBKiK8qwVE1zO5WiDO9yj8';
 const Music = () => {
-  const [searchTerm, setSearchTerm] = useState('choo lo');
+  const [searchTerm, setSearchTerm] = useState('mero aanshu');
   const [musicToPlay, setMusicToPlay] = useState([]);
-  const fetchMusic = async () => {
+  const fetchMusic = async (query) => {
     const res = await axios.get(
-      `${url}?part=snippet&maxResults=1&q=${searchTerm}&key=${key}`
+      `${url}?part=snippet&maxResults=1&q=${
+        query ? query : 'mero aanshu'
+      }&key=${key}`
     );
     setMusicToPlay(res.data.items);
-    console.log(res);
-    console.log(musicToPlay);
+    // console.log(res);
+    // console.log(musicToPlay);
   };
 
   useEffect(async () => {
-    if (musicToPlay.length == 0) {
-      // fetchMusic();
-      console.log('initial');
-    } else {
-      setTimeout(() => {
-        // fetchMusic();
-        console.log('searched');
-      }, 1000);
-    }
-  }, [searchTerm]);
+    // if (musicToPlay.length === 0) {
+    fetchMusic();
+    // console.log('initial');
+  }, []);
+  const handleSubmit = async () => {
+    await fetchMusic(searchTerm);
+    console.log('llalal');
+  };
 
   return (
     <>
       <div className={style.container}>
         {/* <h1>not AweSOME music app</h1> */}
 
-        <form>
+        <div>
           <label className={style.searchLabel} htmlFor='search'>
-            type aweSOME song
+            search aweSOME song and we will play it for you
           </label>
           <input
             className={style.searchInput}
@@ -44,10 +44,10 @@ const Music = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className={style.searchBtn}>
-            wait! we will auto play for you
+          <button className={style.searchBtn} onClick={handleSubmit}>
+            search
           </button>
-        </form>
+        </div>
       </div>
       <div>
         {musicToPlay.map((ss, index) => (
