@@ -50,8 +50,8 @@ const Music = () => {
         </form>
       </div>
       <div>
-        {musicToPlay.map((ss) => (
-          <div style={{ display: 'none' }}>
+        {musicToPlay.map((ss, index) => (
+          <div style={{ display: 'none' }} key={index}>
             {/* <iframe
               width='424'
               height='267'
