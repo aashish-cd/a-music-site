@@ -80,7 +80,7 @@ const Music = () => {
                 },
               }}
             />
-            <span>AutoPlay doesn't works on phone, play from here</span>
+            <span>AutoPlay doesn&apos;t works on phone, play from here</span>
           </div>
         ))}
       </div>
