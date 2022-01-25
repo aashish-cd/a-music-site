@@ -8,6 +8,7 @@ const key = 'AIzaSyCfuWiUInW0YdBKiK8qwVE1zO5WiDO9yj8';
 const Music = () => {
   const [searchTerm, setSearchTerm] = useState('mero aanshu');
   const [musicToPlay, setMusicToPlay] = useState([]);
+  const [showPlaying, setShowPlaying] = useState(false);
   const fetchMusic = async (query) => {
     const res = await axios.get(
       `${url}?part=snippet&maxResults=1&q=${
@@ -26,7 +27,7 @@ const Music = () => {
   }, []);
   const handleSubmit = async () => {
     await fetchMusic(searchTerm);
-    console.log('llalal');
+    setShowPlaying(true);
   };
 
   return (
@@ -47,7 +48,11 @@ const Music = () => {
           <button className={style.searchBtn} onClick={handleSubmit}>
             Play
           </button>
-          <p>now Playing: {musicToPlay[0]?.snippet.title.slice(0, 70)}</p>
+          {showPlaying ? (
+            <p>now Playing: {musicToPlay[0]?.snippet.title.slice(0, 70)}</p>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div>
