@@ -49,11 +49,7 @@ const Music = () => {
           <button className={style.searchBtn} onClick={handleSubmit}>
             Play
           </button>
-          {showPlaying ? (
-            <p>now Playing: {musicToPlay[0]?.snippet.title.slice(0, 70)}</p>
-          ) : (
-            ''
-          )}
+          {showPlaying ? <p>now Playing: {searchTerm}</p> : ''}
         </div>
       </div>
       <div>
