@@ -6,7 +6,7 @@ const url = 'https://www.googleapis.com/youtube/v3/search';
 // const key = 'AIzaSyB4sGKNYZtaIIpPKYXbDn7IjKlyOGfl55Y';
 const key = 'AIzaSyCfuWiUInW0YdBKiK8qwVE1zO5WiDO9yj8';
 const Music = () => {
-  const [searchTerm, setSearchTerm] = useState('mero aanshu');
+  const [searchTerm, setSearchTerm] = useState('');
   const [musicToPlay, setMusicToPlay] = useState([]);
   const [showPlaying, setShowPlaying] = useState(false);
   const fetchMusic = async (query) => {
@@ -42,6 +42,7 @@ const Music = () => {
           <input
             className={style.searchInput}
             name='search'
+            placeholder='enter your song'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -57,7 +58,7 @@ const Music = () => {
       </div>
       <div>
         {musicToPlay.map((ss, index) => (
-          <div style={{ display: 'none' }} key={index}>
+          <div className={style.video} key={index}>
             {/* <iframe
               width='424'
               height='267'
@@ -71,14 +72,15 @@ const Music = () => {
             <YouTube
               videoId={ss.id.videoId}
               opts={{
-                height: '390',
-                width: '640',
+                height: '24',
+                width: '50',
                 playerVars: {
                   autoplay: 1,
                   loop: 1,
                 },
               }}
             />
+            <span>AutoPlay doesn't works on phone, play from here</span>
           </div>
         ))}
       </div>
