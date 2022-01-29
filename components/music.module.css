@@ -42,13 +42,35 @@
   position: absolute;
   bottom: 0;
 }
+.videoShow {
+  display: flex;
+  justify-content: center;
+
+  margin: 0 auto;
+  padding: 0 auto;
+}
+.videoShow > span {
+  display: none;
+}
 @media screen and (max-width: 600px) {
   .video {
     display: flex;
-    width: 100%;
+    width: 20px;
+    height: 20px;
     background-color: white;
+    position: absolute;
   }
+  .videoShow {
+    display: none;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    position: absolute;
+  }
+
   .video > span {
+    display: block;
     font-size: 0.8rem;
   }
   .searchLabel {

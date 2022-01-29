@@ -9,6 +9,7 @@ const Music = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [musicToPlay, setMusicToPlay] = useState([]);
   const [showPlaying, setShowPlaying] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const fetchMusic = async (query) => {
     const res = await axios.get(
       `${url}?part=snippet&maxResults=1&q=${
@@ -76,8 +77,14 @@ const Music = () => {
         </div>
       </div>
       <div>
+        <button onClick={() => setShowVideo(!showVideo)}>
+          {showVideo ? 'hide Video' : 'show Video'}
+        </button>
         {musicToPlay.map((ss, index) => (
-          <div className={style.video} key={index}>
+          <div
+            className={showVideo ? style.videoShow : style.video}
+            key={index}
+          >
             {/* <iframe
               width='424'
               height='267'
@@ -91,8 +98,8 @@ const Music = () => {
             <YouTube
               videoId={ss.id.videoId}
               opts={{
-                height: '24',
-                width: '50',
+                height: '500',
+                width: '1000',
                 playerVars: {
                   autoplay: 1,
                   loop: 1,
