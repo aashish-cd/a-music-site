@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import style from './music.module.css';
 import YouTube from 'react-youtube';
 const url = 'https://www.googleapis.com/youtube/v3/search';
-// const key = 'AIzaSyB4sGKNYZtaIIpPKYXbDn7IjKlyOGfl55Y';
-const key = 'AIzaSyCfuWiUInW0YdBKiK8qwVE1zO5WiDO9yj8';
+const key = 'AIzaSyB4sGKNYZtaIIpPKYXbDn7IjKlyOGfl55Y';
+// const key = 'AIzaSyCfuWiUInW0YdBKiK8qwVE1zO5WiDO9yj8';
 const Music = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [musicToPlay, setMusicToPlay] = useState([]);
@@ -26,12 +26,35 @@ const Music = () => {
     // console.log('initial');
   }, []);
   const handleSubmit = async () => {
+    setShowPlaying(false);
     await fetchMusic(searchTerm);
-    setShowPlaying(true);
+    setTimeout(() => {
+      setShowPlaying(true);
+    }, 1000);
   };
 
   return (
     <>
+      {showPlaying ? (
+        <>
+          <img src='/giphy.gif' alt='background' className='background-image' />
+          <img
+            src='/ss.gif'
+            alt='background'
+            className='background-image-mob'
+          />
+        </>
+      ) : (
+        <>
+          <img src='/bg.jpg' alt='background' className='background-image' />
+          <img
+            src='/bg.jpg'
+            alt='background'
+            className='background-image-mob'
+          />
+        </>
+      )}
+
       <div className={style.container}>
         {/* <h1>not AweSOME music app</h1> */}
 
