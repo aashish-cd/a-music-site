@@ -30,11 +30,15 @@ const Music = () => {
   }, []);
   const handleSubmit = async () => {
     setShowPlaying(false);
-    setShowVideo(false);
+    if (setShowVideo == true) {
+      setShowVideo(false);
+      setTimeout(() => {
+        setShowVideo(true);
+      }, 1200);
+    }
     await fetchMusic(searchTerm);
     setTimeout(() => {
       setShowPlaying(true);
-      setShowVideo(true);
     }, 1000);
   };
 
