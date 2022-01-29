@@ -23,7 +23,9 @@ const Music = () => {
 
   useEffect(async () => {
     // if (musicToPlay.length === 0) {
-    fetchMusic();
+    await fetchMusic();
+    setShowPlaying(true);
+
     // console.log('initial');
   }, []);
   const handleSubmit = async () => {
