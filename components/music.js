@@ -4,7 +4,6 @@ import style from './music.module.css';
 import YouTube from 'react-youtube';
 const url = 'https://www.googleapis.com/youtube/v3/search';
 
-// const key = 'AIzaSyCfuWiUInW0YdBKiK8qwVE1zO5WiDO9yj8';
 const Music = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [musicToPlay, setMusicToPlay] = useState([]);
